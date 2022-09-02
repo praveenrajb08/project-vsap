@@ -15,7 +15,6 @@ const SearchRoutes = () => {
         !loading ?
             <Router>
                 <Routes>
-                    {/* {!user && <Route exact path="/login" element={<Login />} />} */}
                     <Route exact path="/" element={!user ? <Login /> : <HomeScreen />} />
                     {!user &&
                         <Route exact path="/signup" element={<Signup />} />

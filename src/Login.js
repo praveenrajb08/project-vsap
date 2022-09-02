@@ -68,7 +68,8 @@ export default function Login() {
           <div className="field">
             <label>Email</label>
             <input
-              type="text"
+              type="email"
+              autoComplete="false"
               name="email"
               placeholder="Email"
               value={formValues.email}
