@@ -60,45 +60,57 @@ export default function Login() {
   };
 
   return (
-    <div className="container" style={{ backgroundColor: "lightblue" }}>
-      <form onSubmit={handleSubmit}>
-        <h1>Login Form</h1>
-        <div className="ui divider"></div>
-        <div className="ui form">
-          <div className="field">
-            <label>Email</label>
+    <div className="flex flex-col items-center justify-center h-screen ">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 "
+      >
+        <div className="w-full">
+          {/* <form> */}
+          <div className="font-bold text-3xl text-center mb-2 p-3">LOGIN</div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              for="username"
+            >
+              Username
+            </label>
             <input
-              type="email"
-              autoComplete="false"
-              name="email"
-              placeholder="Email"
-              value={formValues.email}
-              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="username"
+              type="text"
+              placeholder="Username"
+              style={{ width: "300px" }}
             />
           </div>
-
-          <div className="field">
-            <label>Password</label>
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              for="password"
+            >
+              Password
+            </label>
             <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
               type="password"
-              name="password"
-              placeholder="Password"
-              value={formValues.password}
-              onChange={handleChange}
             />
           </div>
-
-          <button
-            className="fluid ui button blue"
-            onClick={() => {
-              handleLogin();
-            }}
-          >
-            Submit
-          </button>
-          <p>
-            New user ? <Link to="/signup">Signup</Link>
+          <div className="flex items-center justify-center">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Log In
+            </button>
+          </div>
+          <p className="font-bold text-center mt-2">
+            New user ?{" "}
+            <Link to="/signup" className="text-blue-500">
+              Signup
+            </Link>
           </p>
+          {/* </form> */}
         </div>
       </form>
     </div>
