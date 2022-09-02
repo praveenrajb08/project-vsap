@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { login } from "./firebase";
-
+import { useSelector, useDispatch } from 'react-redux';
+import { selectUser } from "./Feature/userSlice";
 
 export default function Login()  {
   const initialValues = {  email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-
+  const userEmail = useSelector(selectUser)
 
  async function handleLogin() {
         try {
