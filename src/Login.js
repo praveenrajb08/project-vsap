@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { login } from "./firebase";
+import { auth, login } from "./firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUserEmail } from "./features/userSlice";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function Login() {
   const initialValues = { email: "", password: "" };
+  const [user, loading] = useAuthState(auth);
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -14,7 +16,7 @@ export default function Login() {
   async function handleLogin() {
     try {
       await login(formValues.email, formValues.password);
-      alert("Welcome");
+      // alert("Welcome");
     } catch {
       alert("Credentials doesnt match !!");
     }
@@ -32,15 +34,11 @@ export default function Login() {
   };
 
   useEffect(() => {
-    console.log(formErrors);
+    // console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
     }
   }, [formErrors]);
-
-  useEffect(() => {
-    console.log(userEmail);
-  }, []);
 
   const validate = (values) => {
     const errors = {};
@@ -62,48 +60,46 @@ export default function Login() {
   };
 
   return (
-    <body>
-      <div className="container" style={{ backgroundColor: "lightblue" }}>
-        <form onSubmit={handleSubmit}>
-          <h1>Login Form</h1>
-          <div className="ui divider"></div>
-          <div className="ui form">
-            <div className="field">
-              <label>Email</label>
-              <input
-                type="text"
-                name="email"
-                placeholder="Email"
-                value={formValues.email}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="field">
-              <label>Password</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={formValues.password}
-                onChange={handleChange}
-              />
-            </div>
-
-            <button
-              className="fluid ui button blue"
-              onClick={() => {
-                handleLogin();
-              }}
-            >
-              Submit
-            </button>
-            <p>
-              New user ? <Link to="/">Signup</Link>
-            </p>
+    <div className="container" style={{ backgroundColor: "lightblue" }}>
+      <form onSubmit={handleSubmit}>
+        <h1>Login Form</h1>
+        <div className="ui divider"></div>
+        <div className="ui form">
+          <div className="field">
+            <label>Email</label>
+            <input
+              type="text"
+              name="email"
+              placeholder="Email"
+              value={formValues.email}
+              onChange={handleChange}
+            />
           </div>
-        </form>
-      </div>
-    </body>
+
+          <div className="field">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formValues.password}
+              onChange={handleChange}
+            />
+          </div>
+
+          <button
+            className="fluid ui button blue"
+            onClick={() => {
+              handleLogin();
+            }}
+          >
+            Submit
+          </button>
+          <p>
+            New user ? <Link to="/signup">Signup</Link>
+          </p>
+        </div>
+      </form>
+    </div>
   );
 }

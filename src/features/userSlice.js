@@ -22,9 +22,9 @@ export const userSlice = createSlice({
 
 export const { setUserInfo } = userSlice.actions;
 
-export const selectUserName = (state) => state.channel.selectUserName;
-export const selectUserImage = (state) => state.channel.selectUserImage;
-export const selectUserEmail = (state) => state.channel.selectUserEmail;
-export const selectUserId = (state) => state.channel.selectUserId;
+export const selectUserName = (state) => state.user.selectUserName;
+export const selectUserImage = (state) => state.user.selectUserImage;
+export const selectUserEmail = (state) => state.user.selectUserEmail;
+export const selectUserId = (state) => state.user.selectUserId;
 
 export default userSlice.reducer;
